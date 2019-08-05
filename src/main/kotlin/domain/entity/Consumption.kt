@@ -1,8 +1,10 @@
 package domain.entity
 
+import domain.exception.PriceFailureException
+import domain.exception.VolumeFailureException
 import java.time.LocalDate
 
-class Consumption (
+data class Consumption (
         val id: Long,
         val fuelType: FuelType, //fuel type(Ex. 95, 98 or D)
         val pricePerLitter: Double, //price per litter in EUR (Ex. 10.10
@@ -12,8 +14,8 @@ class Consumption (
 ){
     fun TotalPrice(): Double {
         return when {
-            (this.volume < 0) -> throw VolumeFailureException()
-            (this.pricePerLitter < 0) -> throw PriceFailureException()
+            (this.volume < 0) -> throw VolumeFailureException("Volume should be greater than zero")
+            (this.pricePerLitter < 0) -> throw PriceFailureException("Price should be greater than zero")
             else -> pricePerLitter * volume
         }
     }
@@ -28,6 +30,3 @@ class Consumption (
             ", totalPrice='" + TotalPrice() + '\'' +
             '}'
 }
-
-class VolumeFailureException() : RuntimeException()
-class PriceFailureException() : RuntimeException()

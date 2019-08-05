@@ -1,14 +1,14 @@
 package domain.entity
 
+import domain.exception.PriceFailureException
+import domain.exception.VolumeFailureException
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Assertions.assertThrows
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
 import java.time.LocalDate
 
 class ConsumptionTest {
     @Test
-    fun `should create consumption`() {
+    fun `should create instance of consumption`() {
         val consumption = Consumption(1L, FuelType.Diesel, 1.45, 11.0, LocalDate.now(), 1L)
         assertNotNull(consumption)
         assertEquals(1L, consumption.id)
@@ -45,5 +45,21 @@ class ConsumptionTest {
         val consumption = Consumption(1L, FuelType.Diesel, 1.45, 11.0, LocalDate.now(), 1L)
         assertNotNull(consumption)
         assertEquals("User{id='1', fuelType='Diesel', pricePerLitter='1.45', volume='11.0', date='2019-08-05', driverId='1', totalPrice='15.95'}", consumption.toString())
+    }
+
+    @Test
+    fun `limit volume - message should be throw VolumeFailureException`() {
+        val consumption = Consumption(1L, FuelType.Diesel, 1.45, -11.0, LocalDate.now(), 1L)
+        assertNotNull(consumption)
+        val exception = assertThrows(VolumeFailureException::class.java) { consumption.TotalPrice() }
+        assertEquals("Volume should be greater than zero", exception.message)
+    }
+
+    @Test
+    fun `limit price per litter - message should be throw PriceFailureException`() {
+        val consumption = Consumption(1L, FuelType.Diesel, -1.45, 11.0, LocalDate.now(), 1L)
+        assertNotNull(consumption)
+        val exception = assertThrows(PriceFailureException::class.java) { consumption.TotalPrice() }
+        assertEquals("Price should be greater than zero", exception.message)
     }
 }
