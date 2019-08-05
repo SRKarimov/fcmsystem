@@ -17,6 +17,17 @@ class Consumption (
             else -> pricePerLitter * volume
         }
     }
+
+    @Override
+    fun  Any?.toString(): String = "User{" +
+            "id='" + id + '\'' +
+            ", fuelType='" + fuelType + '\'' +
+            ", pricePerLitter='" + pricePerLitter + '\'' +
+            ", volume='" + volume + '\'' +
+            ", date='" + date.toString() + '\'' +
+            ", driverId='" + driverId + '\'' +
+            ", totalPrice='" + TotalPrice() + '\'' +
+            '}'
 }
 
 class VolumeFailureException() : RuntimeException()
