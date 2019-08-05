@@ -1,4 +1,4 @@
-package domain.reoisitory
+package domain.repoisitory
 
 import domain.entity.Consumption
 

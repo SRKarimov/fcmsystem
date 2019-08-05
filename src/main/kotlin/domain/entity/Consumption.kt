@@ -18,8 +18,7 @@ class Consumption (
         }
     }
 
-    @Override
-    fun  Any?.toString(): String = "User{" +
+    override fun  toString(): String = "User{" +
             "id='" + id + '\'' +
             ", fuelType='" + fuelType + '\'' +
             ", pricePerLitter='" + pricePerLitter + '\'' +
