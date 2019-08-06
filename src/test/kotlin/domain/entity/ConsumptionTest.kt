@@ -23,43 +23,24 @@ class ConsumptionTest {
     fun `should calculate total price`() {
         val consumption = Consumption(1L, FuelType.Diesel, 1.45, 11.0, LocalDate.now(), 1L)
         assertNotNull(consumption)
-        assertEquals(15.95, consumption.TotalPrice())
+        assertEquals(15.95, consumption.totalPrice)
     }
 
     @Test
     fun `limit price per litter - should throw PriceFailureException`() {
-        val consumption = Consumption(1L, FuelType.Diesel, -1.45, 11.0, LocalDate.now(), 1L)
-        assertNotNull(consumption)
-        assertThrows(PriceFailureException::class.java) { consumption.TotalPrice() }
+        val exception = assertThrows(PriceFailureException::class.java) { Consumption(1L, FuelType.Diesel, -1.45, 11.0, LocalDate.now(), 1L) }
+        assertEquals("Price should be greater than zero", exception.message)
     }
 
     @Test
     fun `limit volume - should throw VolumeFailureException`() {
-        val consumption = Consumption(1L, FuelType.Diesel, 1.45, -11.0, LocalDate.now(), 1L)
-        assertNotNull(consumption)
-        assertThrows(VolumeFailureException::class.java) { consumption.TotalPrice() }
-    }
+        val exception = assertThrows(VolumeFailureException::class.java) { Consumption(1L, FuelType.Diesel, 1.45, -11.0, LocalDate.now(), 1L) }
+        assertEquals("Volume should be greater than zero", exception.message)    }
 
     @Test
     fun `should return string`() {
         val consumption = Consumption(1L, FuelType.Diesel, 1.45, 11.0, LocalDate.now(), 1L)
         assertNotNull(consumption)
-        assertEquals("User{id='1', fuelType='Diesel', pricePerLitter='1.45', volume='11.0', date='2019-08-05', driverId='1', totalPrice='15.95'}", consumption.toString())
-    }
-
-    @Test
-    fun `limit volume - message should be throw VolumeFailureException`() {
-        val consumption = Consumption(1L, FuelType.Diesel, 1.45, -11.0, LocalDate.now(), 1L)
-        assertNotNull(consumption)
-        val exception = assertThrows(VolumeFailureException::class.java) { consumption.TotalPrice() }
-        assertEquals("Volume should be greater than zero", exception.message)
-    }
-
-    @Test
-    fun `limit price per litter - message should be throw PriceFailureException`() {
-        val consumption = Consumption(1L, FuelType.Diesel, -1.45, 11.0, LocalDate.now(), 1L)
-        assertNotNull(consumption)
-        val exception = assertThrows(PriceFailureException::class.java) { consumption.TotalPrice() }
-        assertEquals("Price should be greater than zero", exception.message)
+        assertEquals("User{id='1', fuelType='Diesel', pricePerLitter='1.45', volume='11.0', date='${LocalDate.now().toString()}', driverId='1', totalPrice='15.95'}", consumption.toString())
     }
 }
