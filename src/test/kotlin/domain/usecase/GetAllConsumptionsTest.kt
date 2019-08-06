@@ -1,15 +1,15 @@
-package domain.testcase
+package domain.usecase
 
 import org.junit.jupiter.api.Test
 
 class GetAllConsumptionsTest {
     @Test
-    fun `get all consumption success`() {
+    fun `get all consumptions success`() {
         TODO()
     }
 
     @Test
-    fun `get all consumption fail`() {
+    fun `get all consumptions fail`() {
         TODO()
     }
 }
