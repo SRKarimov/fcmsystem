@@ -41,6 +41,6 @@ class ConsumptionTest {
     fun `should return string`() {
         val consumption = Consumption(1L, FuelType.Diesel, 1.45, 11.0, LocalDate.now(), 1L)
         assertNotNull(consumption)
-        assertEquals("User{id='1', fuelType='Diesel', pricePerLitter='1.45', volume='11.0', date='${LocalDate.now().toString()}', driverId='1', totalPrice='15.95'}", consumption.toString())
+        assertEquals("Consumption{id='1', fuelType='Diesel', pricePerLitter='1.45', volume='11.0', date='${LocalDate.now().toString()}', driverId='1', totalPrice='15.95'}", consumption.toString())
     }
 }

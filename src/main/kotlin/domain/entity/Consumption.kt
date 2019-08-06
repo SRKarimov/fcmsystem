@@ -31,7 +31,7 @@ class Consumption (
             else -> pricePerLitter * volume
         }
 
-    override fun toString(): String = "User{" +
+    override fun toString(): String = "Consumption{" +
             "id='" + id + '\'' +
             ", fuelType='" + fuelType + '\'' +
             ", pricePerLitter='" + pricePerLitter + '\'' +
