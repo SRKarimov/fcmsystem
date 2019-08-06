@@ -1,4 +1,7 @@
 package domain.entity
+
+import org.junit.jupiter.api.Test
+
 /*
 * total spent amount of money grouped by month
 * list of fuel consumption records for specified month (each row should contain: fuel type, volume, date, price, total price, driver ID)
@@ -7,4 +10,8 @@ package domain.entity
 */
 
 class ConsumptionBusinessLogicTest {
+    @Test
+    fun `should calculate total price`() {
+        TODO()
+    }
 }
