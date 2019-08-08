@@ -1,35 +1,25 @@
 package domain.entity
 
+import domain.exception.DriverIdFailureException
 import domain.exception.PriceFailureException
 import domain.exception.VolumeFailureException
 import java.time.LocalDate
+import java.util.*
 
-class Consumption (
-        id: Long,
-        fuelType: FuelType?, //fuel type(Ex. 95, 98 or D)
-        pricePerLitter: Double, //price per litter in EUR (Ex. 10.10
-        volume: Double, //volume in litters (Ex. 12.5)
-        date: LocalDate?, //date (Ex. 01.21.2018)
-        driverId: Long //driver ID (Ex. 12345)
+class Consumption(
+    val id: UUID = UUID.randomUUID(),
+    val fuelType: FuelType?,
+    val pricePerLitter: Double,
+    val volume: Double,
+    val date: LocalDate?,
+    val driverId: Long
 ){
-    val id = id
-    val fuelType = fuelType ?: FuelType.RON92
-    val pricePerLitter = when {
-        pricePerLitter <= 0 -> throw PriceFailureException("Price should be greater than zero")
-        else -> pricePerLitter
+    init {
+        if (fuelType == null) FuelType.RON92
+        if (volume <= 0) throw VolumeFailureException("Volume should be greater than zero")
+        if (pricePerLitter <= 0) throw PriceFailureException("Price per litter should be greater than zero")
+        if (driverId <= 0) throw DriverIdFailureException("Driver id should be greater than zero")
     }
-
-    val volume = when {
-        volume <= 0 -> throw VolumeFailureException("Volume should be greater than zero")
-        else -> volume
-    }
-    val date = date ?: LocalDate.now()
-    val driverId = driverId
-    val totalPrice = when {
-            (this.volume < 0) -> throw VolumeFailureException("Volume should be greater than zero")
-            (this.pricePerLitter < 0) -> throw PriceFailureException("Price should be greater than zero")
-            else -> pricePerLitter * volume
-        }
 
     override fun toString(): String = "Consumption{" +
             "id='" + id + '\'' +
@@ -38,6 +28,5 @@ class Consumption (
             ", volume='" + volume + '\'' +
             ", date='" + date.toString() + '\'' +
             ", driverId='" + driverId + '\'' +
-            ", totalPrice='" + totalPrice + '\'' +
             '}'
 }

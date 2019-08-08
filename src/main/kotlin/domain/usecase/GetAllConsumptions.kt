@@ -1,8 +1,8 @@
 package domain.usecase
 
 import domain.entity.Consumption
-import domain.repository.IConsumptionRepository
+import domain.usecase.repository.ConsumptionRepository
 
-class GetAllConsumptions(private val consumptionRepository: IConsumptionRepository) {
+class GetAllConsumptions(private val consumptionRepository: ConsumptionRepository) {
     fun execute(): List<Consumption> = consumptionRepository.getAllConsumptions()
 }

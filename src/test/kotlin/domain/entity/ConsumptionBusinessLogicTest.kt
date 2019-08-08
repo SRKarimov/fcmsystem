@@ -1,6 +1,9 @@
 package domain.entity
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import java.time.LocalDate
+import java.util.*
 
 /*
 * total spent amount of money grouped by month
@@ -12,6 +15,7 @@ import org.junit.jupiter.api.Test
 class ConsumptionBusinessLogicTest {
     @Test
     fun `should calculate total price`() {
-        TODO()
+        val consumption = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.now(), 1L)
+        Assertions.assertEquals(15.95, TotalPrice(consumption)())
     }
 }
