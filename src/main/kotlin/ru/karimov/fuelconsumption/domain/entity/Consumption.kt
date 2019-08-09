@@ -18,7 +18,6 @@ class Consumption(
         if (fuelType == null) FuelType.RON92
         if (volume <= 0) throw VolumeFailureException("Volume should be greater than zero")
         if (pricePerLitter <= 0) throw PriceFailureException("Price per litter should be greater than zero")
-        if (driver.id <= 0) throw DriverIdFailureException("Driver id should be greater than zero")
     }
 
     override fun toString(): String = "Consumption{" +

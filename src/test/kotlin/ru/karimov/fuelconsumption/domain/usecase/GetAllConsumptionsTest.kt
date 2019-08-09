@@ -13,7 +13,7 @@ class GetAllConsumptionsTest {
     @Test
     fun `get all consumptions success`() {
         val repo = InMemoryConsumptionRepository()
-        val addUseCase = AddConsumption(repo)
+        val addUseCase = SaveConsumption(repo)
         val getAllUseCase = GetAllConsumptions(repo)
         addUseCase.execute(Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.now(), Driver(1L)))
         addUseCase.execute(Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.now(), Driver(2L)))

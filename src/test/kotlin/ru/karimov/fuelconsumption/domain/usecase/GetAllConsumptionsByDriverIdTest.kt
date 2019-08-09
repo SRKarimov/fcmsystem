@@ -13,7 +13,7 @@ class GetAllConsumptionsByDriverIdTest {
     @Test
     fun `get all consumptions by driver id success`() {
         val repo = InMemoryConsumptionRepository()
-        val addUseCase = AddConsumption(repo)
+        val addUseCase = SaveConsumption(repo)
         val getDriverIdUseCase = GetAllConsumptionsByDriverId(repo)
         addUseCase.execute(Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.now(), Driver(1L)))
         addUseCase.execute(Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.now(), Driver(2L)))
@@ -29,7 +29,7 @@ class GetAllConsumptionsByDriverIdTest {
     @Test
     fun `get all consumptions by driver id fail`() {
         val repo = InMemoryConsumptionRepository()
-        val addUseCase = AddConsumption(repo)
+        val addUseCase = SaveConsumption(repo)
         val getDriverIdUseCase = GetAllConsumptionsByDriverId(repo)
         addUseCase.execute(Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.now(), Driver(1L)))
         addUseCase.execute(Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.now(), Driver(2L)))

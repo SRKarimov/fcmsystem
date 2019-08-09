@@ -12,9 +12,4 @@ class ConsumptionWebTest {
         val consumption = consumptionWeb.toConsumption()
         Assertions.assertEquals("Consumption{id='645f04ff-d987-4439-993c-b972aac35ff6', fuelType='RON98', pricePerLitter='1.45', volume='11.0', date='${LocalDate.now().toString()}', driverId='12345'}", consumption.toString())
     }
-
-    @Test
-    fun `should return web from consumption`() {
-        TODO()
-    }
 }

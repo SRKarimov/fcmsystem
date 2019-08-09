@@ -1,5 +1,5 @@
 package ru.karimov.fuelconsumption.domain.usecase
 
-class AddConsumptions {
+class SaveConsumptions {
     fun execute(): Unit = TODO()
 }

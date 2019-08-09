@@ -15,7 +15,7 @@ class GetConsumptionByIdTest {
     fun `get consumption by id success`() {
         val repo = InMemoryConsumptionRepository()
         val getByIdUseCase = GetConsumptionById(repo)
-        val addUseCase = AddConsumption(repo)
+        val addUseCase = SaveConsumption(repo)
         addUseCase.execute(Consumption(UUID.fromString("ed18a710-6f3c-404e-bba6-fc4276f32ab1"), FuelType.RON92, 1.45, 11.0, LocalDate.now(), Driver(12345L)))
         addUseCase.execute(Consumption(UUID.fromString("ed18a710-6f3c-404e-bba6-fc4276f32ab2"), FuelType.RON92, 1.45, 11.0, LocalDate.now(), Driver(12346L)))
         addUseCase.execute(Consumption(UUID.fromString("ed18a710-6f3c-404e-bba6-fc4276f32ab3"), FuelType.RON92, 1.45, 11.0, LocalDate.now(), Driver(12347L)))
@@ -31,7 +31,7 @@ class GetConsumptionByIdTest {
     fun `get consumption by id fail`() {
         val repo = InMemoryConsumptionRepository()
         val getUseCase = GetConsumptionById(repo)
-        val addUseCase = AddConsumption(repo)
+        val addUseCase = SaveConsumption(repo)
         addUseCase.execute(Consumption(UUID.fromString("ed18a710-6f3c-404e-bba6-fc4276f32ab1"), FuelType.RON92, 1.45, 11.0, LocalDate.now(), Driver(12345L)))
         addUseCase.execute(Consumption(UUID.fromString("ed18a710-6f3c-404e-bba6-fc4276f32ab2"), FuelType.RON92, 1.45, 11.0, LocalDate.now(), Driver(12346L)))
         addUseCase.execute(Consumption(UUID.fromString("ed18a710-6f3c-404e-bba6-fc4276f32ab3"), FuelType.RON92, 1.45, 11.0, LocalDate.now(), Driver(12347L)))

@@ -10,11 +10,11 @@ import ru.karimov.fuelconsumption.domain.entity.Driver
 import java.time.LocalDate
 import java.util.*
 
-class CreateConsumptionTest{
+class SaveConsumptionTest{
     @Test
-    fun `should create consumption success`() {
+    fun `should save consumption success`() {
         val repo = InMemoryConsumptionRepository()
-        val useCase = AddConsumption(repo)
+        val useCase = SaveConsumption(repo)
         val consumption = useCase.execute(Consumption(UUID.fromString("7b3e5b24-6f03-4cad-af3c-c1c76bfb1cb9"), FuelType.Diesel, 1.45, 11.0, LocalDate.now(), Driver(12345L)))
 
         Assertions.assertNotNull(consumption)
@@ -22,9 +22,9 @@ class CreateConsumptionTest{
     }
 
     @Test
-    fun `should create consumption fail`() {
+    fun `should save consumption fail`() {
         val repo = InMemoryConsumptionRepository()
-        val useCase = AddConsumption(repo)
+        val useCase = SaveConsumption(repo)
         val ex = Assertions.assertThrows(DriverIdFailureException::class.java) { useCase.execute(Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.now(), Driver(0L))) }
         Assertions.assertEquals("Driver id should be greater than zero", ex.message)
     }

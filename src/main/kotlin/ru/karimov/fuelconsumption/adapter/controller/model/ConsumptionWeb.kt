@@ -23,14 +23,4 @@ class ConsumptionWeb(
             date = LocalDate.parse(this.date),
             driver = Driver(id = this.driverId)
         )
-
-    fun toConsumptionWeb(consumption: Consumption): ConsumptionWeb =
-        ConsumptionWeb(
-            id = consumption.id,
-            fuelType = consumption.fuelType.toString(),
-            pricePerLitter = consumption.pricePerLitter,
-            volume = consumption.volume,
-            date = consumption.date.toString(),
-            driverId = consumption.driver.id
-        )
 }
