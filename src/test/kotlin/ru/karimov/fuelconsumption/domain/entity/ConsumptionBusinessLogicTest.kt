@@ -15,7 +15,7 @@ import java.util.*
 class ConsumptionBusinessLogicTest {
     @Test
     fun `should calculate total price`() {
-        val consumption = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.now(), 1L)
+        val consumption = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.now(), Driver(1L))
         Assertions.assertEquals(15.95, TotalPrice(consumption)())
     }
 }

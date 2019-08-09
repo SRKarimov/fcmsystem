@@ -1,6 +1,7 @@
 package ru.karimov.fuelconsumption.adapter.controller.model
 
 import ru.karimov.fuelconsumption.domain.entity.Consumption
+import ru.karimov.fuelconsumption.domain.entity.Driver
 import ru.karimov.fuelconsumption.domain.entity.FuelType
 import java.time.LocalDate
 import java.util.*
@@ -20,7 +21,7 @@ class ConsumptionWeb(
             pricePerLitter = this.pricePerLitter,
             volume = this.volume,
             date = LocalDate.parse(this.date),
-            driverId = this.driverId
+            driver = Driver(id = this.driverId)
         )
 
     fun toConsumptionWeb(consumption: Consumption): ConsumptionWeb =
@@ -30,6 +31,6 @@ class ConsumptionWeb(
             pricePerLitter = consumption.pricePerLitter,
             volume = consumption.volume,
             date = consumption.date.toString(),
-            driverId = consumption.driverId
+            driverId = consumption.driver.id
         )
 }

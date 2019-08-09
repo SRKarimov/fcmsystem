@@ -16,7 +16,7 @@ class InMemoryConsumptionRepository: ConsumptionRepository {
     }
 
     override fun getAllConsumptionsByDriverId(driverId: Long): List<Consumption> {
-        return inMemoryDb.values.filter { it -> it.driverId == driverId }.toList()
+        return inMemoryDb.values.filter { it -> it.driver.id == driverId }.toList()
     }
 
     override fun createConsumption(consumption: Consumption): Consumption {

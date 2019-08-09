@@ -12,13 +12,13 @@ class Consumption(
     val pricePerLitter: Double,
     val volume: Double,
     val date: LocalDate?,
-    val driverId: Long
+    val driver: Driver
 ){
     init {
         if (fuelType == null) FuelType.RON92
         if (volume <= 0) throw VolumeFailureException("Volume should be greater than zero")
         if (pricePerLitter <= 0) throw PriceFailureException("Price per litter should be greater than zero")
-        if (driverId <= 0) throw DriverIdFailureException("Driver id should be greater than zero")
+        if (driver.id <= 0) throw DriverIdFailureException("Driver id should be greater than zero")
     }
 
     override fun toString(): String = "Consumption{" +
@@ -27,6 +27,6 @@ class Consumption(
             ", pricePerLitter='" + pricePerLitter + '\'' +
             ", volume='" + volume + '\'' +
             ", date='" + date.toString() + '\'' +
-            ", driverId='" + driverId + '\'' +
+            ", driverId='" + driver.id + '\'' +
             '}'
 }
