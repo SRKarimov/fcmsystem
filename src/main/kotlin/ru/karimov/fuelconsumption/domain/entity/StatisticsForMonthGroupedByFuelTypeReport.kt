@@ -22,6 +22,7 @@ class StatisticsForMonthGroupedByFuelTypeReport {
         val consumptions = ListOfConsumption().getConsumptions()
         val records =
             consumptions
+                .sortedBy { it.driver.id == driverId }
                 .sortedBy { it.date?.month.toString().toLowerCase() == month.toLowerCase() }
                 .groupBy { it.fuelType.toString() }
 
