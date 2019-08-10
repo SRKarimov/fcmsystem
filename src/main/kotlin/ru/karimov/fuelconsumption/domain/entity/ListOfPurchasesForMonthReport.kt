@@ -1,14 +1,14 @@
 package ru.karimov.fuelconsumption.domain.entity
 
-import ru.karimov.fuelconsumption.domain.entity.Dto.PurchaseDto
+import ru.karimov.fuelconsumption.domain.entity.Dto.Purchase
 
 class ListOfPurchasesForMonthReport {
-    fun generate(month: String): List<PurchaseDto> {
+    fun generate(month: String): List<Purchase> {
         val consumptions = ListOfConsumption().getConsumptions()
         return consumptions
             .filter { it.date?.month.toString().toLowerCase() == month.toLowerCase() }
             .map {
-                PurchaseDto(
+                Purchase(
                     fuelType = it.fuelType.toString(),
                     volume = it.volume,
                     date = it.date.toString(),
@@ -19,5 +19,5 @@ class ListOfPurchasesForMonthReport {
             }
     }
 
-    fun generate(driverId: Long, month: String): List<PurchaseDto> = generate(month).filter { it.driverId == driverId }
+    fun generate(driverId: Long, month: String): List<Purchase> = generate(month).filter { it.driverId == driverId }
 }

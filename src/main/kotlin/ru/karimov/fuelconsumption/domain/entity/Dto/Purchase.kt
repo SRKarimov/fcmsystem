@@ -1,6 +1,6 @@
 package ru.karimov.fuelconsumption.domain.entity.Dto
 
-data class PurchaseDto (
+data class Purchase (
     val fuelType: String,
     val volume: Double,
     val date: String,

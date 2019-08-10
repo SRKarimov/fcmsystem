@@ -1,8 +1,5 @@
 package ru.karimov.fuelconsumption.domain.entity
 
-import ru.karimov.fuelconsumption.domain.entity.Dto.PurchaseDto
-import java.time.LocalDate
-
 class TotalSpentMoneyByMonthReport {
     fun generate(): Map<String, Double> {
         val consumptions = ListOfConsumption().getConsumptions()
