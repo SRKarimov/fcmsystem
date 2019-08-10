@@ -6,7 +6,7 @@ class ListOfPurchasesForMonthReport {
     fun generate(month: String): List<PurchaseDto> {
         val consumptions = ListOfConsumption().getConsumptions()
         return consumptions
-            .filter { it -> it.date?.month.toString().toLowerCase() == month.toLowerCase() }
+            .filter { it.date?.month.toString().toLowerCase() == month.toLowerCase() }
             .map {
                 PurchaseDto(
                     fuelType = it.fuelType.toString(),
@@ -19,5 +19,5 @@ class ListOfPurchasesForMonthReport {
             }
     }
 
-    fun generate(driverId: Long, month: String): List<PurchaseDto> = TODO()
+    fun generate(driverId: Long, month: String): List<PurchaseDto> = generate(month).filter { it.driverId == driverId }
 }
