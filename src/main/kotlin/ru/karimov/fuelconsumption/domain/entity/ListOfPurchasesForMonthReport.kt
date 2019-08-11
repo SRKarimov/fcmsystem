@@ -2,9 +2,9 @@ package ru.karimov.fuelconsumption.domain.entity
 
 import ru.karimov.fuelconsumption.domain.entity.Dto.Purchase
 
-class ListOfPurchasesForMonthReport {
+class ListOfPurchasesForMonthReport(private val consumptions: List<Consumption>) {
     fun generate(month: String): List<Purchase> {
-        val consumptions = ListOfConsumption().getConsumptions()
+//        val consumptions = consumption.getConsumptions()
         return consumptions
             .filter { it.date?.month.toString().toLowerCase() == month.toLowerCase() }
             .map {

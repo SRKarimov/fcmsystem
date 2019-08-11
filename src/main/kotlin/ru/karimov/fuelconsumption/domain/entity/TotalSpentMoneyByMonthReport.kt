@@ -1,6 +1,6 @@
 package ru.karimov.fuelconsumption.domain.entity
 
-class TotalSpentMoneyByMonthReport {
+class TotalSpentMoneyByMonthReport(private val consumptions: List<Consumption>) {
     fun generate(): Map<String, Double> {
         val consumptions = ListOfConsumption().getConsumptions()
         return consumptions
