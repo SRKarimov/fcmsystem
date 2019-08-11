@@ -7,7 +7,7 @@ class StatisticsForMonthGroupedByFuelTypeReport {
         val consumptions = ListOfConsumption().getConsumptions()
         val records =
             consumptions
-                .sortedBy { it.date?.month.toString().toLowerCase() == month.toLowerCase() }
+                .filter { it.date?.month.toString().toLowerCase() == month.toLowerCase() }
                 .groupBy { it.fuelType.toString() }
 
         val stat: MutableMap<String, Statistics> = mutableMapOf()
@@ -22,8 +22,7 @@ class StatisticsForMonthGroupedByFuelTypeReport {
         val consumptions = ListOfConsumption().getConsumptions()
         val records =
             consumptions
-                .sortedBy { it.driver.id == driverId }
-                .sortedBy { it.date?.month.toString().toLowerCase() == month.toLowerCase() }
+                .filter { it.driver.id == driverId && it.date?.month.toString().toLowerCase() == month.toLowerCase() }
                 .groupBy { it.fuelType.toString() }
 
         val stat: MutableMap<String, Statistics> = mutableMapOf()
@@ -37,6 +36,6 @@ class StatisticsForMonthGroupedByFuelTypeReport {
     private fun getStatistics(items: List<Consumption>) = Statistics(
             volume = items.sumByDouble { it.volume },
             averagePrice = items.sumByDouble { it.pricePerLitter } / items.size,
-            totalPrice = items.sumByDouble { it.pricePerLitter * it.volume }
+            totalPrice = items.sumByDouble { (it.pricePerLitter * it.volume) }
         )
 }
