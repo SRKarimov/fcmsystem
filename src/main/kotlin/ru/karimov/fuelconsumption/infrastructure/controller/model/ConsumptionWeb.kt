@@ -1,4 +1,4 @@
-package ru.karimov.fuelconsumption.adapter.controller.model
+package ru.karimov.fuelconsumption.infrastructure.controller.model
 
 import ru.karimov.fuelconsumption.domain.entity.Consumption
 import ru.karimov.fuelconsumption.domain.entity.Driver

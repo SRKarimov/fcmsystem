@@ -1,4 +1,4 @@
-package ru.karimov.fuelconsumption.adapter.controller.model
+package ru.karimov.fuelconsumption.infrastructure.controller.model
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
