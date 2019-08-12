@@ -1,23 +1,19 @@
 package ru.karimov.fuelconsumption.domain.entity
 
-import ru.karimov.fuelconsumption.domain.exception.DriverIdFailureException
-import ru.karimov.fuelconsumption.domain.exception.PriceFailureException
-import ru.karimov.fuelconsumption.domain.exception.VolumeFailureException
 import java.time.LocalDate
 import java.util.*
 
 class Consumption(
     val id: UUID = UUID.randomUUID(),
-    val fuelType: FuelType?,
+    val fuelType: FuelType = FuelType.Diesel,
     val pricePerLitter: Double,
     val volume: Double,
     val date: LocalDate?,
     val driver: Driver
 ){
     init {
-        if (fuelType == null) FuelType.RON92
-        if (volume <= 0) throw VolumeFailureException("Volume should be greater than zero")
-        if (pricePerLitter <= 0) throw PriceFailureException("Price per litter should be greater than zero")
+        require (volume > 0) { "Volume should be greater than zero" }
+        require ( pricePerLitter > 0) { "Price per litter should be greater than zero" }
     }
 
     override fun toString(): String = "Consumption{" +

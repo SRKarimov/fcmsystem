@@ -3,24 +3,20 @@ package ru.karimov.fuelconsumption.domain.entity
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import ru.karimov.fuelconsumption.domain.usecase.impl.TotalSpentMoneyByMonthReport
 import java.time.LocalDate
 import java.util.*
 
 class TotalSpentMoneyByMonthReportTest {
-    @BeforeEach
-    fun beforeEach() {
-        val list = ListOfConsumption()
-        list.clearConsumptions()
-    }
-
     @Test
     fun `should generate report for Dec and Jun`() {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 12, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 6, 11), Driver(12346L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 12, 21), Driver(12347L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list =  listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = TotalSpentMoneyByMonthReport(list.getConsumptions()).generate()
+        val report = TotalSpentMoneyByMonthReport(list)
+            .generate()
         Assertions.assertNotNull(report)
         Assertions.assertEquals(2, report.size)
         Assertions.assertTrue(report.containsKey("DECEMBER"))
@@ -32,9 +28,10 @@ class TotalSpentMoneyByMonthReportTest {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 12, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 6, 11), Driver(12346L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 12, 21), Driver(12347L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list =  listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = TotalSpentMoneyByMonthReport(list.getConsumptions()).generate()
+        val report = TotalSpentMoneyByMonthReport(list)
+            .generate()
         Assertions.assertNotNull(report)
         Assertions.assertEquals(2, report.size)
         Assertions.assertTrue(report.containsKey("DECEMBER"))
@@ -47,9 +44,10 @@ class TotalSpentMoneyByMonthReportTest {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 12, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 6, 11), Driver(12346L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 12, 21), Driver(12347L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list =  listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = TotalSpentMoneyByMonthReport(list.getConsumptions()).generate()
+        val report = TotalSpentMoneyByMonthReport(list)
+            .generate()
         Assertions.assertNotNull(report)
         Assertions.assertEquals(2, report.size)
         Assertions.assertTrue(report.containsKey("DECEMBER"))
@@ -63,9 +61,10 @@ class TotalSpentMoneyByMonthReportTest {
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2017, 8, 11), Driver(12346L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2018, 8, 21), Driver(12347L))
         val consumptionFour = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 21), Driver(12348L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree, consumptionFour))
+        val list =  listOf(consumptionOne, consumptionTwo, consumptionThree, consumptionFour)
 
-        val report = TotalSpentMoneyByMonthReport(list.getConsumptions()).generate()
+        val report = TotalSpentMoneyByMonthReport(list)
+            .generate()
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
         Assertions.assertFalse(report.containsKey("DECEMBER"))
@@ -78,9 +77,10 @@ class TotalSpentMoneyByMonthReportTest {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 12, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 6, 11), Driver(12345L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 12, 21), Driver(12345L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list =  listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = TotalSpentMoneyByMonthReport(list.getConsumptions()).generate(12345L)
+        val report = TotalSpentMoneyByMonthReport(list)
+            .generate(12345L)
         Assertions.assertNotNull(report)
         Assertions.assertEquals(2, report.size)
         Assertions.assertTrue(report.containsKey("DECEMBER"))
@@ -92,9 +92,10 @@ class TotalSpentMoneyByMonthReportTest {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 12, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 6, 11), Driver(12346L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 12, 21), Driver(12345L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list =  listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = TotalSpentMoneyByMonthReport(list.getConsumptions()).generate(12345L)
+        val report = TotalSpentMoneyByMonthReport(list)
+            .generate(12345L)
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
         Assertions.assertTrue(report.containsKey("DECEMBER"))
@@ -107,9 +108,10 @@ class TotalSpentMoneyByMonthReportTest {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 12, 1), Driver(12346L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 6, 11), Driver(12345L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 12, 21), Driver(12347L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list =  listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = TotalSpentMoneyByMonthReport(list.getConsumptions()).generate(12345)
+        val report = TotalSpentMoneyByMonthReport(list)
+            .generate(12345)
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
         Assertions.assertTrue(report.containsKey("JUNE"))
@@ -122,9 +124,10 @@ class TotalSpentMoneyByMonthReportTest {
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2017, 8, 11), Driver(12345L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2018, 8, 21), Driver(12345L))
         val consumptionFour = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 21), Driver(12345L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree, consumptionFour))
+        val list =  listOf(consumptionOne, consumptionTwo, consumptionThree, consumptionFour)
 
-        val report = TotalSpentMoneyByMonthReport(list.getConsumptions()).generate()
+        val report = TotalSpentMoneyByMonthReport(list)
+            .generate()
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
         Assertions.assertFalse(report.containsKey("DECEMBER"))

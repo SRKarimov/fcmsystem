@@ -1,7 +1,12 @@
 package ru.karimov.fuelconsumption.domain.usecase
 
-import ru.karimov.fuelconsumption.domain.usecase.repository.ConsumptionRepository
+import ru.karimov.fuelconsumption.domain.repository.ConsumptionRepository
+import ru.karimov.fuelconsumption.domain.repository.TotalSpentMoneyByMonthRepository
 
-class GetTotalSpentAmountOfMoneyGroupedByMonth(private val consumptionRepository: ConsumptionRepository) {
-    fun execute(month: String): Map<String, Double> = TODO()
+class GetTotalSpentAmountOfMoneyGroupedByMonth(
+    private val repository: ConsumptionRepository,
+    private val totalSpentMoneyByMonth: TotalSpentMoneyByMonthRepository
+) {
+    fun execute(): Map<String, Double> =
+        totalSpentMoneyByMonth.generate()
 }

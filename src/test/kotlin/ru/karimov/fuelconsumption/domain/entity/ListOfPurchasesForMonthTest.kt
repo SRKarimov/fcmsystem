@@ -3,24 +3,20 @@ package ru.karimov.fuelconsumption.domain.entity
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import ru.karimov.fuelconsumption.domain.usecase.impl.ListOfPurchasesForMonthReport
 import java.time.LocalDate
 import java.util.*
 
 class ListOfPurchasesForMonthTest {
-    @BeforeEach
-    fun beforeEach() {
-        val list = ListOfConsumption()
-        list.clearConsumptions()
-    }
-
     @Test
     fun `should get list of purchases for August`() {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 11), Driver(12346L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 21), Driver(12347L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = ListOfPurchasesForMonthReport(list.getConsumptions()).generate("August")
+        val report = ListOfPurchasesForMonthReport(list)
+            .generate("August")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(3, report.size)
     }
@@ -30,9 +26,10 @@ class ListOfPurchasesForMonthTest {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 9, 11), Driver(12346L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 21), Driver(12347L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = ListOfPurchasesForMonthReport(list.getConsumptions()).generate("August")
+        val report = ListOfPurchasesForMonthReport(list)
+            .generate("August")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(2, report.size)
     }
@@ -42,9 +39,10 @@ class ListOfPurchasesForMonthTest {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 9, 11), Driver(12346L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 21), Driver(12347L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = ListOfPurchasesForMonthReport(list.getConsumptions()).generate("September")
+        val report = ListOfPurchasesForMonthReport(list)
+            .generate("September")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
     }
@@ -54,9 +52,10 @@ class ListOfPurchasesForMonthTest {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 9, 11), Driver(12346L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 10, 21), Driver(12347L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = ListOfPurchasesForMonthReport(list.getConsumptions()).generate("December")
+        val report = ListOfPurchasesForMonthReport(list)
+            .generate("December")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(0, report.size)
     }
@@ -66,9 +65,10 @@ class ListOfPurchasesForMonthTest {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 11), Driver(12345L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 21), Driver(12345L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = ListOfPurchasesForMonthReport(list.getConsumptions()).generate(12345L, "August")
+        val report = ListOfPurchasesForMonthReport(list)
+            .generate(12345L, "August")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(3, report.size)
     }
@@ -78,9 +78,10 @@ class ListOfPurchasesForMonthTest {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 9, 11), Driver(12346L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 21), Driver(12347L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = ListOfPurchasesForMonthReport(list.getConsumptions()).generate(12345L, "August")
+        val report = ListOfPurchasesForMonthReport(list)
+            .generate(12345L, "August")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
     }
@@ -90,9 +91,10 @@ class ListOfPurchasesForMonthTest {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 9, 11), Driver(12346L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 21), Driver(12347L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = ListOfPurchasesForMonthReport(list.getConsumptions()).generate(12346L, "September")
+        val report = ListOfPurchasesForMonthReport(list)
+            .generate(12346L, "September")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
     }
@@ -102,9 +104,10 @@ class ListOfPurchasesForMonthTest {
         val consumptionOne = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 8, 1), Driver(12345L))
         val consumptionTwo = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 9, 11), Driver(12346L))
         val consumptionThree = Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, 11.0, LocalDate.of(2019, 10, 21), Driver(12347L))
-        val list = ListOfConsumption(listOf(consumptionOne, consumptionTwo, consumptionThree))
+        val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
-        val report = ListOfPurchasesForMonthReport(list.getConsumptions()).generate(12345L, "December")
+        val report = ListOfPurchasesForMonthReport(list)
+            .generate(12345L, "December")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(0, report.size)
     }
