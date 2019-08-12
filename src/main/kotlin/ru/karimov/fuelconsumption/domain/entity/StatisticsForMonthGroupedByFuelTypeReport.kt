@@ -14,9 +14,9 @@ class StatisticsForMonthGroupedByFuelTypeReport(private val consumptions: List<C
         return stat
     }
 
-    fun generate(driverId: Long, month: String): Map<String, Statistics> {
+    fun generate(driver: Driver, month: String): Map<String, Statistics> {
         val records = consumptions
-            .filter { it.driver.id == driverId && it.date?.month.toString().toLowerCase() == month.toLowerCase() }
+            .filter { it.driver.id == driver.id && it.date?.month.toString().toLowerCase() == month.toLowerCase() }
             .groupBy { it.fuelType.toString() }
 
         val stat: MutableMap<String, Statistics> = mutableMapOf()

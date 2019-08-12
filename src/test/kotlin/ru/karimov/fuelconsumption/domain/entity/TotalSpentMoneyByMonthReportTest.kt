@@ -78,7 +78,7 @@ class TotalSpentMoneyByMonthReportTest {
         val list =  listOf(consumptionOne, consumptionTwo, consumptionThree)
 
         val report = TotalSpentMoneyByMonthReport(list)
-            .generate(12345L)
+            .generate(Driver(12345L))
         Assertions.assertNotNull(report)
         Assertions.assertEquals(2, report.size)
         Assertions.assertTrue(report.containsKey("DECEMBER"))
@@ -93,7 +93,7 @@ class TotalSpentMoneyByMonthReportTest {
         val list =  listOf(consumptionOne, consumptionTwo, consumptionThree)
 
         val report = TotalSpentMoneyByMonthReport(list)
-            .generate(12345L)
+            .generate(Driver(12345L))
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
         Assertions.assertTrue(report.containsKey("DECEMBER"))
@@ -109,7 +109,7 @@ class TotalSpentMoneyByMonthReportTest {
         val list =  listOf(consumptionOne, consumptionTwo, consumptionThree)
 
         val report = TotalSpentMoneyByMonthReport(list)
-            .generate(12345)
+            .generate(Driver(12345L))
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
         Assertions.assertTrue(report.containsKey("JUNE"))

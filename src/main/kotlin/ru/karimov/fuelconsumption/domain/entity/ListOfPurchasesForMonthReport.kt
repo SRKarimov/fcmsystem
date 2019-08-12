@@ -1,6 +1,8 @@
 package ru.karimov.fuelconsumption.domain.entity
 
-class ListOfPurchasesForMonthReport(private val consumptions: List<Consumption>) {
+class ListOfPurchasesForMonthReport(
+    private val consumptions: List<Consumption>
+) {
     fun generate(month: String): List<Purchase> {
         require(consumptions.isNotEmpty()) { "List of consumptions should not be empty" }
         return consumptions
@@ -17,5 +19,5 @@ class ListOfPurchasesForMonthReport(private val consumptions: List<Consumption>)
             }
     }
 
-    fun generate(driverId: Long, month: String): List<Purchase> = generate(month).filter { it.driverId == driverId }
+    fun generate(driver: Driver, month: String): List<Purchase> = generate(month).filter { it.driverId == driver.id }
 }

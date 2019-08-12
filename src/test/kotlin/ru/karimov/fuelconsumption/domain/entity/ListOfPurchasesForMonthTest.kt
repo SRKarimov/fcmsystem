@@ -66,7 +66,7 @@ class ListOfPurchasesForMonthTest {
         val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
         val report = ListOfPurchasesForMonthReport(list)
-            .generate(12345L, "August")
+            .generate(Driver(12345L), "August")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(3, report.size)
     }
@@ -79,7 +79,7 @@ class ListOfPurchasesForMonthTest {
         val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
         val report = ListOfPurchasesForMonthReport(list)
-            .generate(12345L, "August")
+            .generate(Driver(12345L), "August")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
     }
@@ -92,7 +92,7 @@ class ListOfPurchasesForMonthTest {
         val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
         val report = ListOfPurchasesForMonthReport(list)
-            .generate(12346L, "September")
+            .generate(Driver(12346L), "September")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
     }
@@ -105,7 +105,7 @@ class ListOfPurchasesForMonthTest {
         val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
         val report = ListOfPurchasesForMonthReport(list)
-            .generate(12345L, "December")
+            .generate(Driver(12345L), "December")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(0, report.size)
     }

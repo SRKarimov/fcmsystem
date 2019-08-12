@@ -77,7 +77,7 @@ class StatisticsForMonthGroupedByFuelTypeReportTest {
         val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
         val report = StatisticsForMonthGroupedByFuelTypeReport(list)
-            .generate(driverId = 12345L, month = "December")
+            .generate(driver = Driver(12345L), month = "December")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(2, report.size)
         Assertions.assertTrue(report.containsKey("Diesel"))
@@ -92,7 +92,7 @@ class StatisticsForMonthGroupedByFuelTypeReportTest {
         val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
         val report = StatisticsForMonthGroupedByFuelTypeReport(list)
-            .generate(12345L, month = "December")
+            .generate(Driver(12345L), month = "December")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
         Assertions.assertTrue(report.containsKey("Diesel"))
@@ -108,7 +108,7 @@ class StatisticsForMonthGroupedByFuelTypeReportTest {
         val list = listOf(consumptionOne, consumptionTwo, consumptionThree)
 
         val report = StatisticsForMonthGroupedByFuelTypeReport(list)
-            .generate(12345L, month = "June")
+            .generate(Driver(12345L), month = "June")
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
         Assertions.assertTrue(report.containsKey("Diesel"))
@@ -124,7 +124,7 @@ class StatisticsForMonthGroupedByFuelTypeReportTest {
         val list = listOf(consumptionOne, consumptionTwo, consumptionThree, consumptionFour)
 
         val report = StatisticsForMonthGroupedByFuelTypeReport(list)
-            .generate(month = "August", driverId = 12345L)
+            .generate(month = "August", driver = Driver(12345L))
         Assertions.assertNotNull(report)
         Assertions.assertEquals(1, report.size)
         Assertions.assertTrue(report.containsKey("Diesel"))

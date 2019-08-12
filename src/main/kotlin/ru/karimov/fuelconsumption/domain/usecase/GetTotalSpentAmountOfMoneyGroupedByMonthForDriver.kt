@@ -2,14 +2,15 @@ package ru.karimov.fuelconsumption.domain.usecase
 
 import ru.karimov.fuelconsumption.domain.entity.TotalSpentMoneyByMonthReport
 import ru.karimov.fuelconsumption.domain.usecase.repository.ConsumptionRepository
-import ru.karimov.fuelconsumption.domain.usecase.repository.TotalSpentMoneyByMonthRepository
+import ru.karimov.fuelconsumption.domain.usecase.repository.DriverRepository
 
 class GetTotalSpentAmountOfMoneyGroupedByMonthForDriver(
     private val consumptionRepository: ConsumptionRepository,
-    private val totalSpentMoneyRepository: TotalSpentMoneyByMonthRepository
+    private val driverRepository: DriverRepository
     ) {
         fun execute(driverId: Long): Map<String, Double> {
             val consumptions = consumptionRepository.fetchAll()
-            return totalSpentMoneyRepository.generate(driverId = driverId, consumptions = consumptions)
+            val driver = driverRepository.fetchById(driverId)
+            return TotalSpentMoneyByMonthReport(consumptions = consumptions).generate(driver = driver)
         }
 }

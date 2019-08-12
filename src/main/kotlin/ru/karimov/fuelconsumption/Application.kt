@@ -1,6 +1,6 @@
 package ru.karimov.fuelconsumption
 
-
+import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
@@ -8,5 +8,5 @@ import org.springframework.boot.runApplication
 class FuelConsumptionApplication
 
 fun main(args: Array<String>) {
-    runApplication<FuelConsumptionApplication>(*args)
+    SpringApplication.run(FuelConsumptionApplication::class.java, *args)
 }

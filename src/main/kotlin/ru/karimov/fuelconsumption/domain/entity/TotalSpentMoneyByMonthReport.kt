@@ -7,9 +7,9 @@ class TotalSpentMoneyByMonthReport(private val consumptions: List<Consumption>) 
             .mapValues { it -> it.value.sumByDouble { it.pricePerLitter * it.volume } }
     }
 
-    fun generate(driverId: Long): Map<String, Double> {
+    fun generate(driver: Driver): Map<String, Double> {
         return consumptions
-            .filter { it.driver.id == driverId }
+            .filter { it.driver.id == driver.id }
             .groupBy { it.date?.month.toString() }
             .mapValues { it -> it.value.sumByDouble { it.pricePerLitter * it.volume } }
     }
