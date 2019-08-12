@@ -9,8 +9,8 @@ class GetTotalSpentAmountOfMoneyGroupedByMonthForDriver(
     private val driverRepository: DriverRepository
     ) {
         fun execute(driverId: Long): Map<String, Double> {
-            val consumptions = consumptionRepository.fetchAll()
+            val consumptionList = consumptionRepository.fetchAll()
             val driver = driverRepository.fetchById(driverId)
-            return TotalSpentMoneyByMonthReport(consumptions = consumptions).generate(driver = driver)
+            return TotalSpentMoneyByMonthReport(consumptions = consumptionList).generate(driver = driver)
         }
 }

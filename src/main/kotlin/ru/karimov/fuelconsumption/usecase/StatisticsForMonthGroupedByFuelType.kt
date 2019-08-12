@@ -8,7 +8,7 @@ class StatisticsForMonthGroupedByFuelType(
     private val consumptionRepository: ConsumptionRepository
 ) {
     fun execute(month: String): Map<String, Statistics> {
-        val consumptions = consumptionRepository.fetchAll()
-        return StatisticsForMonthGroupedByFuelTypeReport(consumptions = consumptions).generate(month = month)
+        val consumptionList = consumptionRepository.fetchAll()
+        return StatisticsForMonthGroupedByFuelTypeReport(consumptions = consumptionList).generate(month = month)
     }
 }

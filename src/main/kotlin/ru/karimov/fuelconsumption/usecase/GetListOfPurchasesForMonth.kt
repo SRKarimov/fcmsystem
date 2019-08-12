@@ -6,7 +6,7 @@ import ru.karimov.fuelconsumption.usecase.repository.ConsumptionRepository
 
 class GetListOfPurchasesForMonth (private val consumptionRepository: ConsumptionRepository) {
     fun execute(month: String): List<Purchase> {
-        val consumptions = consumptionRepository.fetchAll()
-        return ListOfPurchasesForMonthReport(consumptions).generate(month = month)
+        val consumptionList = consumptionRepository.fetchAll()
+        return ListOfPurchasesForMonthReport(consumptionList).generate(month = month)
     }
 }

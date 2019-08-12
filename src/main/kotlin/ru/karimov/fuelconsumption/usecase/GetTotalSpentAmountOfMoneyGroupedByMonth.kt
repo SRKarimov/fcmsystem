@@ -7,7 +7,7 @@ class GetTotalSpentAmountOfMoneyGroupedByMonth(
     private val consumptionRepository: ConsumptionRepository
 ) {
     fun execute(): Map<String, Double> {
-        val consumptions = consumptionRepository.fetchAll()
-        return TotalSpentMoneyByMonthReport(consumptions = consumptions).generate()
+        val consumptionsList= consumptionRepository.fetchAll()
+        return TotalSpentMoneyByMonthReport(consumptions = consumptionsList).generate()
     }
 }

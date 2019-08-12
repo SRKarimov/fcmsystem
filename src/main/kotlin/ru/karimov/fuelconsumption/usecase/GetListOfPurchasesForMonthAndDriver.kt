@@ -10,8 +10,8 @@ class GetListOfPurchasesForMonthAndDriver(
     private val driverRepository: DriverRepository
     ) {
     fun execute(driverId: Long, month: String): List<Purchase> {
-        val consumptions = consumptionRepository.fetchAll()
+        val consumptionList = consumptionRepository.fetchAll()
         val driver = driverRepository.fetchById(driverId)
-        return ListOfPurchasesForMonthReport(consumptions).generate(driver = driver, month = month)
+        return ListOfPurchasesForMonthReport(consumptionList).generate(driver = driver, month = month)
     }
 }

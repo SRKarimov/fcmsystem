@@ -10,8 +10,8 @@ class StatisticsForMonthGroupedByFuelTypeForDriver (
     private val driverRepository: DriverRepository
 ) {
     fun execute(driverId: Long, month: String): Map<String, Statistics> {
-        val consumptions = consumptionRepository.fetchAll()
+        val consumptionList = consumptionRepository.fetchAll()
         val driver = driverRepository.fetchById(driverId)
-        return StatisticsForMonthGroupedByFuelTypeReport(consumptions = consumptions).generate(driver = driver, month = month)
+        return StatisticsForMonthGroupedByFuelTypeReport(consumptions = consumptionList).generate(driver = driver, month = month)
     }
 }
