@@ -1,9 +1,8 @@
 package ru.karimov.fuelconsumption.domain.entity
 
-import ru.karimov.fuelconsumption.domain.exception.PriceFailureException
-import ru.karimov.fuelconsumption.domain.exception.VolumeFailureException
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import java.lang.IllegalArgumentException
 import java.time.LocalDate
 import java.util.*
 
@@ -28,13 +27,13 @@ class ConsumptionTest {
 
     @Test
     fun `limit price per litter - should throw PriceFailureException`() {
-        val exception = assertThrows(PriceFailureException::class.java) { Consumption(UUID.randomUUID(), FuelType.Diesel, -1.45, 11.0, LocalDate.now(), Driver(1L)) }
+        val exception = assertThrows(IllegalArgumentException::class.java) { Consumption(UUID.randomUUID(), FuelType.Diesel, -1.45, 11.0, LocalDate.now(), Driver(1L)) }
         assertEquals("Price per litter should be greater than zero", exception.message)
     }
 
     @Test
     fun `limit volume - should throw VolumeFailureException`() {
-        val exception = assertThrows(VolumeFailureException::class.java) { Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, -11.0, LocalDate.now(), Driver(1L)) }
+        val exception = assertThrows(IllegalArgumentException::class.java) { Consumption(UUID.randomUUID(), FuelType.Diesel, 1.45, -11.0, LocalDate.now(), Driver(1L)) }
         assertEquals("Volume should be greater than zero", exception.message)
     }
 

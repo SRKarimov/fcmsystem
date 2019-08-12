@@ -1,9 +1,7 @@
 package ru.karimov.fuelconsumption.domain.entity
 
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import ru.karimov.fuelconsumption.domain.usecase.impl.TotalSpentMoneyByMonthReport
 import java.time.LocalDate
 import java.util.*
 
