@@ -1,8 +1,8 @@
-package ru.karimov.fuelconsumption.domain.usecase
+package ru.karimov.fuelconsumption.usecase
 
 import ru.karimov.fuelconsumption.domain.entity.TotalSpentMoneyByMonthReport
-import ru.karimov.fuelconsumption.domain.usecase.repository.ConsumptionRepository
-import ru.karimov.fuelconsumption.domain.usecase.repository.DriverRepository
+import ru.karimov.fuelconsumption.usecase.repository.ConsumptionRepository
+import ru.karimov.fuelconsumption.usecase.repository.DriverRepository
 
 class GetTotalSpentAmountOfMoneyGroupedByMonthForDriver(
     private val consumptionRepository: ConsumptionRepository,

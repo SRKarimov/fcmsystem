@@ -1,4 +1,4 @@
-package ru.karimov.fuelconsumption.domain.usecase
+package ru.karimov.fuelconsumption.usecases
 
 import org.junit.jupiter.api.Test
 

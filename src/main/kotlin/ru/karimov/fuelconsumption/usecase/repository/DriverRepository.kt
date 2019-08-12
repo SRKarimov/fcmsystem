@@ -1,4 +1,4 @@
-package ru.karimov.fuelconsumption.domain.usecase.repository
+package ru.karimov.fuelconsumption.usecase.repository
 
 import ru.karimov.fuelconsumption.domain.entity.Driver
 

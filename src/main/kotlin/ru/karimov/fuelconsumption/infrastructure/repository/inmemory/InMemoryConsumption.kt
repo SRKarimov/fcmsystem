@@ -1,25 +1,25 @@
 package ru.karimov.fuelconsumption.infrastructure.repository.inmemory
 
 import ru.karimov.fuelconsumption.domain.entity.Consumption
-import ru.karimov.fuelconsumption.domain.usecase.repository.ConsumptionRepository
+import ru.karimov.fuelconsumption.usecase.repository.ConsumptionRepository
 import java.util.*
 
 class InMemoryConsumption: ConsumptionRepository {
     private val inMemoryDb = hashMapOf<UUID, Consumption>()
 
-    override fun save(consumption: Consumption): Consumption {
-        if (inMemoryDb.containsKey(consumption.id)) return consumption
+    override fun save(consumption: Consumption): Boolean {
+        if (inMemoryDb.containsKey(consumption.id)) return true
 
         inMemoryDb[consumption.id] = consumption
-        return consumption
+        return true
     }
 
-    override fun saveAll(consumptions: List<Consumption>): List<Consumption> {
+    override fun saveAll(consumptions: List<Consumption>): Int {
         for (consumption in consumptions) {
             save(consumption)
         }
 
-        return consumptions
+        return consumptions.size
     }
 
     override fun fetchById(id: UUID): Consumption {

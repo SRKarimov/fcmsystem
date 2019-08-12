@@ -1,4 +1,4 @@
-package ru.karimov.fuelconsumption.domain.usecase
+package ru.karimov.fuelconsumption.usecases
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -7,6 +7,7 @@ import ru.karimov.fuelconsumption.domain.entity.Driver
 import ru.karimov.fuelconsumption.domain.entity.FuelType
 import ru.karimov.fuelconsumption.infrastructure.repository.inmemory.InMemoryConsumption
 import ru.karimov.fuelconsumption.infrastructure.repository.inmemory.InMemoryDriver
+import ru.karimov.fuelconsumption.usecase.GetTotalSpentAmountOfMoneyGroupedByMonth
 import java.time.LocalDate
 import java.util.*
 

@@ -1,7 +1,7 @@
 package ru.karimov.fuelconsumption.infrastructure.repository.inmemory
 
 import ru.karimov.fuelconsumption.domain.entity.Driver
-import ru.karimov.fuelconsumption.domain.usecase.repository.DriverRepository
+import ru.karimov.fuelconsumption.usecase.repository.DriverRepository
 
 class InMemoryDriver: DriverRepository {
     private val inMemoryDb = hashMapOf<Long, Driver>()

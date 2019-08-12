@@ -1,9 +1,9 @@
-package ru.karimov.fuelconsumption.domain.usecase
+package ru.karimov.fuelconsumption.usecase
 
 import ru.karimov.fuelconsumption.domain.entity.Statistics
 import ru.karimov.fuelconsumption.domain.entity.StatisticsForMonthGroupedByFuelTypeReport
-import ru.karimov.fuelconsumption.domain.usecase.repository.ConsumptionRepository
-import ru.karimov.fuelconsumption.domain.usecase.repository.DriverRepository
+import ru.karimov.fuelconsumption.usecase.repository.ConsumptionRepository
+import ru.karimov.fuelconsumption.usecase.repository.DriverRepository
 
 class StatisticsForMonthGroupedByFuelTypeForDriver (
     private val consumptionRepository: ConsumptionRepository,

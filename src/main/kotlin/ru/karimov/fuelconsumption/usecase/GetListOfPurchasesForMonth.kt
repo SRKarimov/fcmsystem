@@ -1,8 +1,8 @@
-package ru.karimov.fuelconsumption.domain.usecase
+package ru.karimov.fuelconsumption.usecase
 
 import ru.karimov.fuelconsumption.domain.entity.ListOfPurchasesForMonthReport
 import ru.karimov.fuelconsumption.domain.entity.Purchase
-import ru.karimov.fuelconsumption.domain.usecase.repository.ConsumptionRepository
+import ru.karimov.fuelconsumption.usecase.repository.ConsumptionRepository
 
 class GetListOfPurchasesForMonth (private val consumptionRepository: ConsumptionRepository) {
     fun execute(month: String): List<Purchase> {

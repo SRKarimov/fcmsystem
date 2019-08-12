@@ -1,4 +1,4 @@
-package ru.karimov.fuelconsumption.domain.usecase
+package ru.karimov.fuelconsumption.usecases
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -7,13 +7,13 @@ import ru.karimov.fuelconsumption.domain.entity.Driver
 import ru.karimov.fuelconsumption.domain.entity.FuelType
 import ru.karimov.fuelconsumption.infrastructure.repository.inmemory.InMemoryConsumption
 import ru.karimov.fuelconsumption.infrastructure.repository.inmemory.InMemoryDriver
-import java.lang.IllegalArgumentException
+import ru.karimov.fuelconsumption.usecase.GetListOfPurchasesForMonthAndDriver
 import java.time.LocalDate
 import java.util.*
 
-class GetTotalSpentAmountOfMoneyGroupedByMonthForDriverTest {
+class GetListOfPurchasesForMonthAndDriverTest {
     @Test
-    fun `should get total money for driver success`() {
+    fun `should get list of purchases for Dec and driver 12345 success`() {
         val inMemoryConsumption = InMemoryConsumption()
         val inMemoryDriver = InMemoryDriver()
         val driver = inMemoryDriver.save(Driver(id = 12345L))
@@ -29,12 +29,15 @@ class GetTotalSpentAmountOfMoneyGroupedByMonthForDriverTest {
             )
         )
 
-        val result = GetTotalSpentAmountOfMoneyGroupedByMonthForDriver(inMemoryConsumption, inMemoryDriver).execute(driverId = 12345L)
+        val result = GetListOfPurchasesForMonthAndDriver(
+            inMemoryConsumption,
+            inMemoryDriver
+        ).execute(driverId = 12345L, month = "December")
         Assertions.assertEquals(1, result.size)
     }
 
     @Test
-    fun `should get total money for driver fail`() {
+    fun `should get list of purchases for Dec fail`() {
         val inMemoryConsumption = InMemoryConsumption()
         val inMemoryDriver = InMemoryDriver()
         val driver = inMemoryDriver.save(Driver(id = 12345L))
@@ -42,7 +45,7 @@ class GetTotalSpentAmountOfMoneyGroupedByMonthForDriverTest {
         inMemoryConsumption.save(
             Consumption(
                 id = UUID.randomUUID(),
-                date = LocalDate.of(2019, 12, 1),
+                date = LocalDate.of(2019, 8, 1),
                 volume = 11.0,
                 fuelType = FuelType.RON91,
                 pricePerLitter = 1.1,
@@ -50,7 +53,10 @@ class GetTotalSpentAmountOfMoneyGroupedByMonthForDriverTest {
             )
         )
 
-        val ex = Assertions.assertThrows(IllegalArgumentException::class.java) { GetTotalSpentAmountOfMoneyGroupedByMonthForDriver(inMemoryConsumption, inMemoryDriver).execute(driverId = 1L) }
-        Assertions.assertEquals("Consumption not found", ex.message)
+        val result = GetListOfPurchasesForMonthAndDriver(
+            inMemoryConsumption,
+            inMemoryDriver
+        ).execute(driverId = 12345L, month = "December")
+        Assertions.assertEquals(0, result.size)
     }
 }
