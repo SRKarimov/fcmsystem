@@ -2,6 +2,7 @@ package ru.karimov.fuelconsumption.usecase
 
 import ru.karimov.fuelconsumption.domain.entity.ListOfPurchasesForMonthReport
 import ru.karimov.fuelconsumption.domain.entity.Purchase
+import ru.karimov.fuelconsumption.usecase.exception.StorageIsEmptyException
 import ru.karimov.fuelconsumption.usecase.repository.ConsumptionRepository
 
 class GetListOfPurchasesForMonth (private val consumptionRepository: ConsumptionRepository) {

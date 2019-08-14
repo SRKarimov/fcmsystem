@@ -57,17 +57,13 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed", "standard_error"
+        showStackTraces true
+        showCauses true
+        exceptionFormat = 'full'
+    }
 }
-
-//compileKotlin {
-//    sourceCompatibility = JavaVersion.VERSION_11
-//    targetCompatibility = JavaVersion.VERSION_11
-//}
-//
-//compileTestKotlin {
-//    sourceCompatibility = JavaVersion.VERSION_11
-//    targetCompatibility = JavaVersion.VERSION_11
-//}
 
 compileKotlin {
     kotlinOptions.jvmTarget = "11"

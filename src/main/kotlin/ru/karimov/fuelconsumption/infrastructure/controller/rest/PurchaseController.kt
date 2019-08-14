@@ -7,23 +7,30 @@ import ru.karimov.fuelconsumption.infrastructure.repository.inmemory.InMemoryCon
 import ru.karimov.fuelconsumption.infrastructure.repository.inmemory.InMemoryDriver
 import ru.karimov.fuelconsumption.usecase.GetListOfPurchasesForMonth
 import ru.karimov.fuelconsumption.usecase.GetListOfPurchasesForMonthAndDriver
+import java.lang.IllegalArgumentException
 
 @Controller
 @RequestMapping("/purchase")
 class PurchaseController {
     @GetMapping("/{month}")
-    fun create(@PathVariable("month") month: String): List<PurchaseDto> {
+    fun create(@PathVariable("month") month: String): String {
         val repository = InMemoryConsumption()
 
-        return GetListOfPurchasesForMonth(repository).execute(month = month)
-            .map { it -> PurchaseDto(
-                fuelType = it.fuelType,
-                driverId = it.driverId,
-                date = it.date,
-                price = it.price,
-                totalPrice = it.totalPrice,
-                volume = it.volume
-                ) }
+        return try {
+            GetListOfPurchasesForMonth(repository).execute(month = month)
+                .map { it ->
+                    PurchaseDto(
+                        fuelType = it.fuelType,
+                        driverId = it.driverId,
+                        date = it.date,
+                        price = it.price,
+                        totalPrice = it.totalPrice,
+                        volume = it.volume
+                    )
+                }.toString()
+        } catch (ex: IllegalArgumentException) {
+            ex.toString()
+        }
     }
 
     @GetMapping("/{driverId}/{month}")
