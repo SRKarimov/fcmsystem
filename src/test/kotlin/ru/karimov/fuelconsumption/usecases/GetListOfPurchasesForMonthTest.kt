@@ -6,6 +6,7 @@ import ru.karimov.fuelconsumption.domain.entity.Consumption
 import ru.karimov.fuelconsumption.domain.entity.Driver
 import ru.karimov.fuelconsumption.domain.entity.FuelType
 import ru.karimov.fuelconsumption.infrastructure.repository.inmemory.InMemoryConsumption
+import ru.karimov.fuelconsumption.infrastructure.repository.inmemory.InMemoryDriver
 import ru.karimov.fuelconsumption.usecase.GetListOfPurchasesForMonth
 import java.time.LocalDate
 import java.util.*
@@ -14,6 +15,7 @@ class GetListOfPurchasesForMonthTest {
     @Test
     fun `should get list of purchases for Dec success`() {
         val inMemoryConsumption = InMemoryConsumption()
+        inMemoryConsumption.deleteAll()
 
         inMemoryConsumption.save(Consumption(
             id = UUID.randomUUID(),
@@ -29,8 +31,9 @@ class GetListOfPurchasesForMonthTest {
     }
 
     @Test
-    fun `should get list of purchases for Dec fail`() {
+    fun `should get list of purchases for Sep fail`() {
         val inMemoryConsumption = InMemoryConsumption()
+        inMemoryConsumption.deleteAll()
 
         inMemoryConsumption.save(Consumption(
             id = UUID.randomUUID(),
@@ -41,7 +44,7 @@ class GetListOfPurchasesForMonthTest {
             driver = Driver(12345L)
         ))
 
-        val result = GetListOfPurchasesForMonth(inMemoryConsumption).execute("December")
+        val result = GetListOfPurchasesForMonth(inMemoryConsumption).execute("september")
         Assertions.assertEquals(0, result.size)
     }
 }

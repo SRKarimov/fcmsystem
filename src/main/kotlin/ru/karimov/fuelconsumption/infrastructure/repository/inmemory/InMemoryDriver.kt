@@ -1,15 +1,19 @@
 package ru.karimov.fuelconsumption.infrastructure.repository.inmemory
 
+import ru.karimov.fuelconsumption.domain.entity.Consumption
 import ru.karimov.fuelconsumption.domain.entity.Driver
 import ru.karimov.fuelconsumption.usecase.repository.DriverRepository
+import java.util.*
 
 class InMemoryDriver: DriverRepository {
-    private val inMemoryDb = hashMapOf<Long, Driver>()
+    object Singleton {
+        val inMemoryDb = hashMapOf<Long, Driver>()
+    }
 
     override fun save(driver: Driver): Driver {
-        if (inMemoryDb.containsKey(driver.id)) return driver
+        if (Singleton.inMemoryDb.containsKey(driver.id)) return driver
 
-        inMemoryDb[driver.id] = driver
+        Singleton.inMemoryDb[driver.id] = driver
         return driver
     }
 
@@ -22,11 +26,15 @@ class InMemoryDriver: DriverRepository {
     }
 
     override fun fetchById(id: Long): Driver {
-        require(inMemoryDb.containsKey(id)) { "Consumption not found" }
-        return inMemoryDb[id]!!
+        require(Singleton.inMemoryDb.containsKey(id)) { "Driver not found" }
+        return Singleton.inMemoryDb[id]!!
     }
 
     override fun fetchAll(): List<Driver> {
-        return inMemoryDb.values.toList()
+        return Singleton.inMemoryDb.values.toList()
+    }
+
+    override fun deleteAll() {
+        Singleton.inMemoryDb.clear()
     }
 }

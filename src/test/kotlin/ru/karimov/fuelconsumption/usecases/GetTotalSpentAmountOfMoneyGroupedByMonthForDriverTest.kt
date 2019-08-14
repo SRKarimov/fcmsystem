@@ -16,7 +16,9 @@ class GetTotalSpentAmountOfMoneyGroupedByMonthForDriverTest {
     @Test
     fun `should get total money for driver success`() {
         val inMemoryConsumption = InMemoryConsumption()
+        inMemoryConsumption.deleteAll()
         val inMemoryDriver = InMemoryDriver()
+        inMemoryDriver.deleteAll()
         val driver = inMemoryDriver.save(Driver(id = 12345L))
 
         inMemoryConsumption.save(
@@ -40,7 +42,9 @@ class GetTotalSpentAmountOfMoneyGroupedByMonthForDriverTest {
     @Test
     fun `should get total money for driver fail`() {
         val inMemoryConsumption = InMemoryConsumption()
+        inMemoryConsumption.deleteAll()
         val inMemoryDriver = InMemoryDriver()
+        inMemoryDriver.deleteAll()
         val driver = inMemoryDriver.save(Driver(id = 12345L))
 
         inMemoryConsumption.save(
@@ -58,6 +62,6 @@ class GetTotalSpentAmountOfMoneyGroupedByMonthForDriverTest {
             inMemoryConsumption,
             inMemoryDriver
         ).execute(driverId = 1L) }
-        Assertions.assertEquals("Consumption not found", ex.message)
+        Assertions.assertEquals("Driver not found", ex.message)
     }
 }

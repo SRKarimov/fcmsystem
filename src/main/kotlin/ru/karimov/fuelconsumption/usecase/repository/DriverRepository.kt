@@ -7,4 +7,5 @@ interface DriverRepository {
     fun save(driver: Driver): Driver
     fun saveAll(drivers: List<Driver>): List<Driver>
     fun fetchAll(): List<Driver>
+    fun deleteAll()
 }

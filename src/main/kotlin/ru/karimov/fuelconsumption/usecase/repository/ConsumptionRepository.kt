@@ -8,4 +8,5 @@ interface ConsumptionRepository {
     fun saveAll(consumptions: List<Consumption>): Int
     fun fetchById(id: UUID): Consumption
     fun fetchAll(): List<Consumption>
+    fun deleteAll()
 }

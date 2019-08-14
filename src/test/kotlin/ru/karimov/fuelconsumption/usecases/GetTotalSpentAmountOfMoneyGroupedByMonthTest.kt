@@ -15,7 +15,9 @@ class GetTotalSpentAmountOfMoneyGroupedByMonthTest {
     @Test
     fun `should get total money success`() {
         val inMemoryConsumption = InMemoryConsumption()
+        inMemoryConsumption.deleteAll()
         val inMemoryDriver = InMemoryDriver()
+        inMemoryDriver.deleteAll()
         val driver = inMemoryDriver.save(Driver(id = 12345L))
 
         inMemoryConsumption.save(

@@ -16,7 +16,9 @@ class StatisticsForMonthGroupedByFuelTypeForDriverTest {
     @Test
     fun `should get statistics for Dec and driver success`() {
         val inMemoryConsumption = InMemoryConsumption()
+        inMemoryConsumption.deleteAll()
         val inMemoryDriver = InMemoryDriver()
+        inMemoryDriver.deleteAll()
         val driver = inMemoryDriver.save(Driver(id = 12345L))
 
         inMemoryConsumption.save(
@@ -40,7 +42,9 @@ class StatisticsForMonthGroupedByFuelTypeForDriverTest {
     @Test
     fun `should get statistics for Dec and driver fail`() {
         val inMemoryConsumption = InMemoryConsumption()
+        inMemoryConsumption.deleteAll()
         val inMemoryDriver = InMemoryDriver()
+        inMemoryDriver.deleteAll()
         val driver = inMemoryDriver.save(Driver(id = 12345L))
 
         inMemoryConsumption.save(
@@ -58,6 +62,6 @@ class StatisticsForMonthGroupedByFuelTypeForDriverTest {
             inMemoryConsumption,
             inMemoryDriver
         ).execute(driverId = 1L, month = "December") }
-        Assertions.assertEquals("Consumption not found", ex.message)
+        Assertions.assertEquals("Driver not found", ex.message)
     }
 }

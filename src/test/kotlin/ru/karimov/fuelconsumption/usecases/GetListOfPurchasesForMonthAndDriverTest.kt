@@ -1,6 +1,7 @@
 package ru.karimov.fuelconsumption.usecases
 
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import ru.karimov.fuelconsumption.domain.entity.Consumption
 import ru.karimov.fuelconsumption.domain.entity.Driver
@@ -15,7 +16,10 @@ class GetListOfPurchasesForMonthAndDriverTest {
     @Test
     fun `should get list of purchases for Dec and driver 12345 success`() {
         val inMemoryConsumption = InMemoryConsumption()
+        inMemoryConsumption.deleteAll()
         val inMemoryDriver = InMemoryDriver()
+        inMemoryDriver.deleteAll()
+
         val driver = inMemoryDriver.save(Driver(id = 12345L))
 
         inMemoryConsumption.save(
@@ -37,9 +41,11 @@ class GetListOfPurchasesForMonthAndDriverTest {
     }
 
     @Test
-    fun `should get list of purchases for Dec fail`() {
+    fun `should get list of purchases for Sep fail`() {
         val inMemoryConsumption = InMemoryConsumption()
+        inMemoryConsumption.deleteAll()
         val inMemoryDriver = InMemoryDriver()
+        inMemoryDriver.deleteAll()
         val driver = inMemoryDriver.save(Driver(id = 12345L))
 
         inMemoryConsumption.save(
@@ -56,7 +62,7 @@ class GetListOfPurchasesForMonthAndDriverTest {
         val result = GetListOfPurchasesForMonthAndDriver(
             inMemoryConsumption,
             inMemoryDriver
-        ).execute(driverId = 12345L, month = "December")
+        ).execute(driverId = 12345L, month = "september")
         Assertions.assertEquals(0, result.size)
     }
 }

@@ -1,9 +1,6 @@
 package ru.karimov.fuelconsumption.infrastructure.controller.rest
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import ru.karimov.fuelconsumption.infrastructure.controller.model.StatisticsDto
 import ru.karimov.fuelconsumption.infrastructure.repository.inmemory.InMemoryConsumption
 import ru.karimov.fuelconsumption.infrastructure.repository.inmemory.InMemoryDriver
@@ -14,6 +11,7 @@ import ru.karimov.fuelconsumption.usecase.StatisticsForMonthGroupedByFuelTypeFor
 @RequestMapping("/statistics")
 class StatisticsController {
     @GetMapping("/{month}")
+    @ResponseBody
     fun create(@PathVariable("month") month: String): Map<String, StatisticsDto> {
         val repository = InMemoryConsumption()
 
@@ -29,7 +27,8 @@ class StatisticsController {
         return statisticsResponseDto
     }
 
-    @GetMapping("/{driverId}/{month}")
+    @GetMapping("/{month}/{driverId}")
+    @ResponseBody
     fun createBulk(
         @PathVariable("driverId") driverId: Long,
         @PathVariable("month") month: String
